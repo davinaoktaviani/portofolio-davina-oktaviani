@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davina Oktaviani — Data Science & Machine Learning Portfolio</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        palette: {
+                            coral: '#F6B5A7',      /* Color 1 from image palette */
+                            cream: '#FCEAD7',      /* Color 2 from image palette */
+                            teal: '#A7CDC4',       /* Color 3 from image palette */
+                            blue: '#76A2C5',       /* Color 4 from image palette */
+                            bg: '#FAF8F7',          /* Clean light background */
+                            card: '#FFFFFF',
+                            text: '#1E293B',
+                            muted: '#64748B'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(248, 164, 153, 0.25)',
+                        'blue-glow': '0 10px 30px -10px rgba(91, 152, 200, 0.25)',
+                        'teal-glow': '0 10px 30px -10px rgba(130, 196, 186, 0.25)',
+                        'card-hover': '0 20px 40px -15px rgba(30, 41, 59, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F8A499;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5B98C8;
+        }
+        .gradient-text-coral {
+            background: linear-gradient(135deg, #E06C5E 0%, #F8A499 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-text-blue {
+            background: linear-gradient(135deg, #3A7FB0 0%, #5B98C8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-badge-coral {
+            background: linear-gradient(135deg, rgba(248, 164, 153, 0.18) 0%, rgba(253, 238, 217, 0.4) 100%);
+        }
+        .gradient-badge-teal {
+            background: linear-gradient(135deg, rgba(130, 196, 186, 0.18) 0%, rgba(253, 238, 217, 0.3) 100%);
+        }
+        .gradient-badge-blue {
+            background: linear-gradient(135deg, rgba(91, 152, 200, 0.18) 0%, rgba(253, 238, 217, 0.3) 100%);
+        }
+        .active-tab {
+            background-color: #5B98C8 !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 16px rgba(91, 152, 200, 0.35);
+        }
+    
+.asset-wrap,.logo-wrap{position:relative;overflow:hidden}
+.asset-wrap .asset{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s}
+.logo-wrap .asset{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:.4rem}
+.ph{display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;background:linear-gradient(135deg,#FDEED9,#dff0ed);color:#64748B;font-size:.78rem;font-weight:600;text-align:center;padding:1rem}
+.ph small{font-weight:500;opacity:.7}
+.asset-wrap.no-img .ph{display:flex}.asset-wrap.no-img .asset,.logo-wrap.no-img .asset{display:none}
+.logo-wrap .fb{display:none}.logo-wrap.no-img .fb{display:flex}
+.project-card:hover .asset{transform:scale(1.05)}
+.paper{background:#fff;border-radius:14px;box-shadow:0 25px 50px -12px rgba(30,41,59,.25);transform:rotate(3deg);transition:transform .4s}
+.cv-card:hover .paper{transform:rotate(0)}
+#cv-modal.flex{animation:pop .25s ease-out}@keyframes pop{from{opacity:0;transform:scale(.98)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.logo-wrap.no-img{border:2px dashed #94a3b8!important;background:#f8fafc!important;padding-bottom:11px}
+.logo-wrap.no-img::after{content:'LOGO';position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:9px;font-weight:800;letter-spacing:.08em;color:#64748b}
+.skill-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .8rem .3rem .3rem;border-radius:.85rem;background:#fff;border:1px solid #e2e8f0;font-size:.75rem;font-weight:600;color:#1e293b;transition:transform .2s,box-shadow .2s,border-color .2s}
+.skill-chip:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(30,41,59,.25);border-color:#82C4BA}
+.skill-chip .tile{position:relative;width:1.7rem;height:1.7rem;border-radius:.6rem;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.62rem;font-weight:800;overflow:hidden;flex-shrink:0}
+.skill-chip .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:.28rem;background:#fff}
+.skill-soft{background:linear-gradient(135deg,#fff1ee,#fdeed9);border-color:#F8A499}
+.float-chip{position:absolute;z-index:5;background:#fff;border:1px solid #e2e8f0;border-radius:999px;padding:.4rem .85rem;font-size:.72rem;font-weight:700;color:#1e293b;box-shadow:0 12px 24px -10px rgba(30,41,59,.3);animation:flt 5s ease-in-out infinite;white-space:nowrap}
+@keyframes flt{50%{transform:translateY(-10px)}}
+.marquee-track{display:flex;width:max-content;animation:marq 40s linear infinite}@keyframes marq{to{transform:translateX(-50%)}}
+.reveal{opacity:0}.reveal.in{opacity:1;animation:rise .7s ease-out backwards}@keyframes rise{from{opacity:0;transform:translateY(22px)}}
+.zoomable{cursor:zoom-in}.zoom-hint{position:absolute;right:.6rem;bottom:.6rem;width:2rem;height:2rem;border-radius:999px;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#334155;opacity:0;transition:opacity .2s}
+.zoomable:hover .zoom-hint{opacity:1}.zoomable:hover .asset{transform:scale(1.04)}
+.lift{transition:transform .3s,box-shadow .3s}.lift:hover{transform:translateY(-4px);box-shadow:0 22px 40px -18px rgba(30,41,59,.2)}
+#hero{background-image:radial-gradient(#e2c9c2 1px,transparent 1px);background-size:22px 22px}
+</style>
+<script>
+/* ====== ISI DI SINI: ID file CV dari Google Drive ======
+   Link Drive: https://drive.google.com/file/d/ABC123xyz/view  -> ID = ABC123xyz
+   Pastikan akses file: "Anyone with the link" (Siapa saja yang memiliki link) */
+const CV_FILE_ID='1iuh-2FsPB-ISteByVlLfMxACiSSxXgBv';
+const cvReady=()=>CV_FILE_ID&&!CV_FILE_ID.startsWith('PASTE');
+function assetMissing(img){const w=img.closest('.asset-wrap,.logo-wrap');if(w)w.classList.add('no-img');}
+function openCV(){const m=document.getElementById('cv-modal'),f=document.getElementById('cv-frame'),n=document.getElementById('cv-note');
+ m.classList.remove('hidden');m.classList.add('flex');document.body.style.overflow='hidden';
+ if(cvReady()){f.src='https://drive.google.com/file/d/'+CV_FILE_ID+'/preview';f.classList.remove('hidden');n.classList.add('hidden');}
+ else{f.classList.add('hidden');n.classList.remove('hidden');}}
+function closeCV(){const m=document.getElementById('cv-modal');m.classList.add('hidden');m.classList.remove('flex');document.body.style.overflow='';}
+function downloadCV(){if(cvReady())window.open('https://drive.google.com/uc?export=download&id='+CV_FILE_ID,'_blank');else openCV();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCV();});
+</script>
+
+</head>
+<body class="bg-palette-bg text-palette-text font-sans antialiased selection:bg-palette-coral selection:text-white leading-relaxed text-base">
+
+    <div id="prog" class="fixed top-0 left-0 h-1 z-[70] w-0" style="background:linear-gradient(90deg,#F6B5A7 0 25%,#FCEAD7 25% 50%,#A7CDC4 50% 75%,#76A2C5 75%)"></div>
+    <header class="fixed top-0 left-0 right-0 z-50 bg-palette-bg/90 backdrop-blur-md border-b border-slate-200/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+            <a href="#hero" class="text-xl font-bold tracking-tight flex items-center gap-2.5 group">
+                <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-palette-coral via-palette-teal to-palette-blue text-white flex items-center justify-center text-base font-extrabold shadow-sm group-hover:scale-105 transition-transform">DO</span>
+                <span class="text-slate-900 font-semibold text-lg group-hover:text-[#4A7FA8] transition-colors">Davina <span class="text-[#E0806F]">Oktaviani</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-[#4A7FA8] transition-colors">About</a>
+                <a href="#experience" class="hover:text-[#4A7FA8] transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-[#4A7FA8] transition-colors">Projects</a>
+                <a href="#awards" class="hover:text-[#4A7FA8] transition-colors">Awards</a>
+                <a href="#skills" class="hover:text-[#4A7FA8] transition-colors">Skills</a>
+<a href="#cv" class="hover:text-[#4A7FA8] transition-colors">CV</a>
+            </nav>
+
+            <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 text-white text-xs font-semibold hover:bg-palette-blue transition-all shadow-md hover:shadow-blue-glow">
+                <span>Contact Me</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-700 hover:text-[#4A7FA8] focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-slate-200 px-6 py-4 flex-col gap-3 text-sm font-medium shadow-lg">
+            <a href="#about" class="mobile-nav-link py-2 hover:text-[#4A7FA8]">About</a>
+            <a href="#experience" class="mobile-nav-link py-2 hover:text-[#4A7FA8]">Experience</a>
+            <a href="#projects" class="mobile-nav-link py-2 hover:text-[#4A7FA8]">Projects</a>
+            <a href="#awards" class="mobile-nav-link py-2 hover:text-[#4A7FA8]">Awards</a>
+            <a href="#skills" class="mobile-nav-link py-2 hover:text-[#4A7FA8]">Skills</a>
+<a href="#cv" class="mobile-nav-link py-2 hover:text-[#4A7FA8]">CV</a>
+            <a href="#contact" class="mobile-nav-link py-2 text-[#4A7FA8] font-bold">Contact Me →</a>
+        </div>
+    </header>
+
+    <main class="pt-24 sm:pt-28">
+        <section id="hero" class="relative min-h-[85vh] flex items-center justify-center px-6 lg:px-12 overflow-hidden py-12">
+            <!-- Background Decorative Soft Palette Blurs -->
+            <div class="absolute top-10 left-10 w-96 h-96 bg-palette-coral/20 rounded-full filter blur-3xl -z-10 animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-palette-cream/80 rounded-full filter blur-3xl -z-10"></div>
+            <div class="absolute top-1/2 right-1/4 w-80 h-80 bg-palette-teal/20 rounded-full filter blur-3xl -z-10"></div>
+
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
+                    
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+                        Hello, I'm <br />
+                        <span class="gradient-text-coral">Davina Oktaviani</span>
+                    </h1>
+
+                    <p class="text-slate-600 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Data Science student at Bina Nusantara University passionate about <span class="text-slate-900 font-semibold underline decoration-palette-teal decoration-2">Machine Learning</span>, <span class="text-slate-900 font-semibold underline decoration-palette-blue decoration-2">Data Analytics</span>, and applying data-driven approaches to solve real-world problems.
+                    </p>
+
+                    <!-- Quick Contact Pills -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs sm:text-sm font-medium text-slate-600">
+                        <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200/80 shadow-sm"><i class="fa-solid fa-location-dot text-[#E0806F]"></i> Jakarta Barat, DKI Jakarta</span>
+                        <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200/80 shadow-sm"><i class="fa-solid fa-graduation-cap text-[#4A7FA8]"></i> BINUS University (2024 – Present)</span>
+                                            </div>
+
+                    <!-- CTA Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-3">
+                        <a href="#projects" class="px-8 py-3.5 rounded-2xl bg-slate-900 text-white text-sm font-semibold hover:bg-palette-blue transition-all transform hover:-translate-y-0.5 flex items-center gap-2.5 shadow-md hover:shadow-blue-glow">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <span>View My Projects</span>
+                        </a>
+                        <button onclick="openCV()" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-palette-coral to-palette-blue text-white text-sm font-semibold transition-all transform hover:-translate-y-0.5 flex items-center gap-2.5 shadow-md hover:shadow-soft"><i class="fa-solid fa-file-lines"></i><span>View CV</span></button>
+<a href="#contact" class="px-8 py-3.5 rounded-2xl bg-white text-slate-800 border border-slate-300 text-sm font-semibold hover:bg-slate-50 transition-all hover:border-palette-teal flex items-center gap-2.5 shadow-sm">
+                            <i class="fa-solid fa-address-book"></i>
+                            <span>Contact Info</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="flex items-center justify-center lg:justify-start gap-4 pt-2 text-slate-500">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Connect:</span>
+                        <a href="https://github.com/davinaoktaviani" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/davina-oktaviani-664419326/" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-palette-blue hover:text-white transition-all shadow-sm">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=davinaoktaviani1810@gmail.com"
+   target="_blank"
+   rel="noopener noreferrer"
+   title="Email me"
+   class="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-palette-coral hover:text-white transition-all shadow-sm">
+    <i class="fa-solid fa-envelope text-lg"></i>
+</a>
+                    </div>
+                </div>
+
+                <!-- Hero Photo -->
+<div class="lg:col-span-5 flex justify-center">
+<div class="relative w-full max-w-sm">
+<div class="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-palette-coral via-palette-teal to-palette-blue opacity-40 blur-2xl"></div>
+<div class="relative rounded-[2rem] p-1.5 bg-gradient-to-br from-palette-coral via-palette-teal to-palette-blue shadow-2xl">
+<div class="asset-wrap aspect-[5/7] rounded-[1.65rem] bg-white"><img class="asset" src="images/foto-davina.jpg" alt="Foto Davina (portrait)" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto Davina (portrait)<br><small>images/foto-davina.jpg</small></span></div></div>
+<div class="absolute left-4 right-4 bottom-4 bg-white/90 backdrop-blur rounded-2xl px-5 py-3.5 shadow-lg">
+<div class="font-bold text-slate-900 text-lg leading-tight">Davina Oktaviani</div>
+<div class="text-xs text-slate-600 font-medium">Data Science · BINUS University</div>
+</div></div></div></div>
+</div>
+</section>
+
+        <section id="about" class="py-20 px-6 lg:px-12 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#E0806F]">Profile Overview</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">About Me</h2>
+                <div class="w-16 h-1 bg-palette-coral mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Bio Text -->
+                <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-5 text-slate-600 text-base leading-relaxed">
+                        <p>
+                            I am a <strong class="text-slate-900 font-semibold">Data Science student at Bina Nusantara University (BINUS University)</strong> with an interest in data analytics and machine learning.
+                        </p>
+                        <p>
+                            I am experienced in applying data-driven approaches through academic projects, national competitions, and collaborative activities.
+                        </p>
+                        <p>
+                            Strong in analytical thinking, communication, teamwork, and leadership, with a focus on using data to solve real-world problems.
+                        </p>
+                    </div>
+
+                    <div class="pt-8 border-t border-slate-100 mt-8 grid grid-cols-2 gap-6 text-center">
+                        <div>
+                            <div class="text-2xl font-extrabold text-[#E0806F]">2024–2028</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">BINUS Study Period</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-[#4A7FA8]">2 Certificates</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">NVIDIA & AWS</div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Education & Academic Details Card -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-white via-palette-bg to-palette-cream/30 p-8 sm:p-10 rounded-3xl border border-palette-coral/30 shadow-sm flex flex-col justify-between space-y-6">
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-3">
+                            <div class="logo-wrap w-20 h-20 rounded-2xl bg-white border border-slate-200 shrink-0 shadow-sm"><img class="asset" src="images/logo-binus.png" alt="Logo BINUS" onerror="assetMissing(this)"><i class="fb absolute inset-0 items-center justify-center text-xl text-[#4A7FA8] fa-solid fa-graduation-cap"></i></div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-lg">Education</h3>
+                                <p class="text-xs text-slate-500 font-medium">BINUS University (2024 – Present)</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-white border border-slate-200/80 space-y-1">
+                            <h4 class="font-bold text-slate-800 text-sm">School of Computer Science</h4>
+                            <p class="text-xs text-[#4A7FA8] font-semibold">Data Science Major</p>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider">Relevant Coursework:</h4>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium"><i class="fa-solid fa-check text-[#4E9C8E] mr-1.5"></i>Data Analytics</span>
+                                <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium"><i class="fa-solid fa-check text-[#4E9C8E] mr-1.5"></i>Machine Learning</span>
+                                <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium"><i class="fa-solid fa-check text-[#4E9C8E] mr-1.5"></i>Deep Learning</span>
+                                <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium"><i class="fa-solid fa-check text-[#4E9C8E] mr-1.5"></i>Data Mining</span>
+                                <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium"><i class="fa-solid fa-check text-[#4E9C8E] mr-1.5"></i>Data Visualization</span>
+                                <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium"><i class="fa-solid fa-check text-[#4E9C8E] mr-1.5"></i>Human-Computer Interaction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20 px-6 lg:px-12 bg-white border-y border-slate-200/80">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#4A7FA8]">Leadership & Mentorship</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Experience & Organizations</h2>
+                    <div class="w-16 h-1 bg-palette-blue mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Column 1: Campus Leadership (First Year Program) -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-xl bg-palette-coral text-white flex items-center justify-center text-sm shadow-sm"><i class="fa-solid fa-users"></i></span>
+                            BINUS First Year Program
+                        </h3>
+
+                        <!-- Experience Card 1 -->
+                        <div class="p-7 rounded-3xl bg-palette-bg border border-slate-200 hover:border-palette-coral transition-all space-y-4 shadow-sm">
+<div class="asset-wrap aspect-[16/9] rounded-2xl"><img class="asset" src="images/kegiatan-freshmen-partner.jpg" alt="Foto kegiatan Freshmen Partner" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto kegiatan Freshmen Partner<br><small>images/kegiatan-freshmen-partner.jpg</small></span></div></div>
+                            <div class="flex flex-wrap justify-between items-start gap-2">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-lg">Freshmen Partner</h4>
+                                    <p class="text-xs font-semibold text-[#E0806F]">First Year Program BINUSIAN 2029</p>
+                                </div>
+                                <span class="px-3.5 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-semibold">Sep 2025 – Jul 2026</span>
+                            </div>
+                            <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5 leading-relaxed">
+                                <li>Mentored and supported freshmen throughout their first academic year, covering Semester 1 and Semester 2.</li>
+                                <li>Guided students in adapting to university life, academic systems, campus culture, and available university resources while providing academic and non-academic assistance.</li>
+                                <li>Facilitated communication and collaboration, served as a liaison with relevant university staff and support services, and fostered a supportive environment for freshmen.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Experience Card 2 -->
+                        <div class="p-7 rounded-3xl bg-palette-bg border border-slate-200 hover:border-palette-coral transition-all space-y-4 shadow-sm">
+<div class="asset-wrap aspect-[16/9] rounded-2xl"><img class="asset" src="images/kegiatan-freshmen-leader.jpg" alt="Foto kegiatan Freshmen Leader" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto kegiatan Freshmen Leader<br><small>images/kegiatan-freshmen-leader.jpg</small></span></div></div>
+                            <div class="flex flex-wrap justify-between items-start gap-2">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-lg">Freshmen Leader</h4>
+                                    <p class="text-xs font-semibold text-[#E0806F]">First Year Program BINUSIAN 2029</p>
+                                </div>
+                                <span class="px-3.5 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-semibold">Jul 2025 – Sep 2025</span>
+                            </div>
+                            <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5 leading-relaxed">
+                                <li>Guided and supported incoming freshmen throughout the First Year Program (FYP), including orientation activities and their transition to university life.</li>
+                                <li>Mentored students in adapting to academic expectations, campus culture, and university resources while encouraging teamwork, communication, and engagement.</li>
+                                <li>Coordinated program activities and applied leadership, planning, organization, and collaboration skills to support a positive orientation experience.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Organizations & Volunteering -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-xl bg-palette-teal text-white flex items-center justify-center text-sm shadow-sm"><i class="fa-solid fa-hands-holding-child"></i></span>
+                            Organizations & Volunteering
+                        </h3>
+
+                        <!-- Organization Card 1 -->
+<div class="p-7 rounded-3xl bg-palette-bg border border-slate-200 hover:border-palette-teal transition-all space-y-4 shadow-sm"><div class="flex items-center gap-4"><div class="logo-wrap w-16 h-16 rounded-2xl bg-white border border-slate-200 shrink-0 shadow-sm"><img class="asset" src="images/logo-tfi.png" alt="Logo Teach For Indonesia" onerror="assetMissing(this)"><i class="fb absolute inset-0 items-center justify-center text-xl text-[#4A7FA8] fa-solid fa-hands-holding-child"></i></div><div class="flex-1 flex flex-wrap justify-between items-center gap-2"><h4 class="font-bold text-slate-900 text-lg leading-snug">Teach For Indonesia — Member</h4><span class="px-3.5 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-semibold whitespace-nowrap">Nov 2025 – Present</span></div></div>
+<p class="text-sm text-slate-600 leading-relaxed">Participated in a community service program focused on early childhood education at PAUD Ummi. Collaborated with fellow volunteers to conduct engaging learning activities designed to support children's cognitive, motor, and social development.</p></div>
+<!-- Organization Card 2 -->
+<div class="p-7 rounded-3xl bg-palette-bg border border-slate-200 hover:border-palette-teal transition-all space-y-4 shadow-sm"><div class="flex items-center gap-4"><div class="logo-wrap w-16 h-16 rounded-2xl bg-white border border-slate-200 shrink-0 shadow-sm"><img class="asset" src="images/logo-dsc.png" alt="Logo Data Science Club" onerror="assetMissing(this)"><i class="fb absolute inset-0 items-center justify-center text-xl text-[#4A7FA8] fa-solid fa-chart-line"></i></div><div class="flex-1 flex flex-wrap justify-between items-center gap-2"><h4 class="font-bold text-slate-900 text-lg leading-snug">Data Science Club Member</h4><span class="px-3.5 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-semibold whitespace-nowrap">Sep 2024 – Present</span></div></div>
+<p class="text-sm text-slate-600 leading-relaxed">Member of the Data Science Club at Bina Nusantara University, a student community focused on data science, technology, collaboration, and continuous learning. Engaging with the community to expand knowledge in data analytics, machine learning, artificial intelligence, and emerging technologies.</p></div>
+<!-- Volunteering Card 3 -->
+<div class="p-7 rounded-3xl bg-palette-bg border border-slate-200 hover:border-palette-teal transition-all space-y-4 shadow-sm"><div class="asset-wrap aspect-[16/9] rounded-2xl"><img class="asset" src="images/kegiatan-volunteer-teacher.jpg" alt="Foto kegiatan Volunteer Teacher" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto kegiatan Volunteer Teacher<br><small>images/kegiatan-volunteer-teacher.jpg</small></span></div></div>
+<div class="flex flex-wrap justify-between items-start gap-2"><div><h4 class="font-bold text-slate-900 text-lg">Volunteer Teacher</h4><p class="text-xs font-semibold text-[#4E9C8E]">Volunteering · Teach For Indonesia</p></div><span class="px-3.5 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-semibold">Nov 2025 – Dec 2025</span></div>
+<ul class="text-sm text-slate-600 space-y-2 list-disc pl-5 leading-relaxed"><li>Assisted early childhood students through fun learning activities such as educational games, storytelling, singing, and creative exercises.</li><li>Collaborated with fellow volunteers to support children's development while strengthening communication, teamwork, empathy, and facilitation skills.</li></ul></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 px-6 lg:px-12 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#E0806F]">Technical Portfolio</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Featured Projects</h2>
+                <div class="w-16 h-1 bg-palette-coral mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2.5 mb-12 text-sm font-semibold">
+                <button class="project-filter-btn px-6 py-2.5 rounded-full border border-slate-300 text-slate-700 active-tab transition-all" data-filter="all">All Projects</button>
+                <button class="project-filter-btn px-6 py-2.5 rounded-full border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-all" data-filter="ml">Machine Learning</button>
+                <button class="project-filter-btn px-6 py-2.5 rounded-full border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-all" data-filter="dl">Deep Learning</button>
+                <button class="project-filter-btn px-6 py-2.5 rounded-full border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-all" data-filter="web">Web Development</button>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="flex flex-wrap justify-center gap-8">
+                
+                <!-- Project 1: Credit Score Prediction -->
+                <div class="project-card w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between" data-category="ml">
+<div class="asset-wrap aspect-[16/10]"><img class="asset" src="images/project-credit-score.jpg" alt="Foto project: Credit Score Prediction" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto project: Credit Score Prediction<br><small>images/project-credit-score.jpg</small></span></div></div>
+                    <div class="p-7 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3.5 py-1 rounded-lg gradient-badge-coral text-slate-800 text-xs font-bold">ML & Cloud Deployment</span>
+                            <span class="text-xs text-slate-400 font-medium">Jun – Jul 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 hover:text-[#4A7FA8] transition-colors cursor-pointer" onclick="openProjectModal('credit-score')">
+                            Credit Score Prediction 🔗
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Developed an end-to-end machine learning classification project to predict customers' credit scores into Poor, Standard, and Good categories.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Python</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Random Forest</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">MLflow</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Streamlit</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">AWS EC2/S3</span>
+                        </div>
+                    </div>
+                    <div class="px-7 py-4 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-xs font-bold">
+                        <button onclick="openProjectModal('credit-score')" class="text-[#4A7FA8] hover:underline flex items-center gap-1.5">
+                            <span>View Architecture & Details</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com/davinaoktaviani/credit-score-prediction" target="_blank" class="text-slate-500 hover:text-slate-900"><i class="fa-brands fa-github text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Student Placement & Salary Prediction -->
+                <div class="project-card w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between" data-category="ml">
+<div class="asset-wrap aspect-[16/10]"><img class="asset" src="images/project-student-placement.jpg" alt="Foto project: Student Placement & Salary" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto project: Student Placement & Salary<br><small>images/project-student-placement.jpg</small></span></div></div>
+                    <div class="p-7 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3.5 py-1 rounded-lg gradient-badge-teal text-teal-800 text-xs font-bold">ML Classification & Regression</span>
+                            <span class="text-xs text-slate-400 font-medium">Apr 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 hover:text-[#4A7FA8] transition-colors cursor-pointer" onclick="openProjectModal('student-placement')">
+                            Student Placement & Salary Prediction 🔗
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Developed a machine learning project combining classification and regression to predict student placement status and estimated salary.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">SVM</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Logistic Regression</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">FastAPI</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Streamlit</span>
+                        </div>
+                    </div>
+                    <div class="px-7 py-4 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-xs font-bold">
+                        <button onclick="openProjectModal('student-placement')" class="text-[#4A7FA8] hover:underline flex items-center gap-1.5">
+                            <span>View Architecture & Details</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com/davinaoktaviani/student-placement-prediction" target="_blank" class="text-slate-500 hover:text-slate-900"><i class="fa-brands fa-github text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Stock Price Prediction using LSTM -->
+                <div class="project-card w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between" data-category="dl">
+<div class="asset-wrap aspect-[16/10]"><img class="asset" src="images/project-stock-lstm.jpg" alt="Foto project: Stock Price Prediction LSTM" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto project: Stock Price Prediction LSTM<br><small>images/project-stock-lstm.jpg</small></span></div></div>
+                    <div class="p-7 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3.5 py-1 rounded-lg gradient-badge-blue text-slate-800 text-xs font-bold">Deep Learning Time-Series</span>
+                            <span class="text-xs text-slate-400 font-medium">Jun 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 hover:text-[#4A7FA8] transition-colors cursor-pointer" onclick="openProjectModal('stock-lstm')">
+                            Stock Price Prediction using LSTM 🔗
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Deep learning time-series forecasting project using LSTM networks to predict stock prices based on historical data from Facebook and IBM.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">LSTM</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">TensorFlow / PyTorch</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Sliding Window</span>
+                        </div>
+                    </div>
+                    <div class="px-7 py-4 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-xs font-bold">
+                        <button onclick="openProjectModal('stock-lstm')" class="text-[#4A7FA8] hover:underline flex items-center gap-1.5">
+                            <span>View Architecture & Details</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com/davinaoktaviani/stock-price-prediction-lstm" target="_blank" class="text-slate-500 hover:text-slate-900"><i class="fa-brands fa-github text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 4: GameStoB Website -->
+                <div class="project-card w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between" data-category="web">
+<div class="asset-wrap aspect-[16/10]"><img class="asset" src="images/project-gamestob.jpg" alt="Foto project: GameStoB Website" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto project: GameStoB Website<br><small>images/project-gamestob.jpg</small></span></div></div>
+                    <div class="p-7 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3.5 py-1 rounded-lg bg-amber-100 text-amber-900 text-xs font-bold">Front-End Web Development</span>
+                            <span class="text-xs text-slate-400 font-medium">Feb – Jun 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 hover:text-[#4A7FA8] transition-colors cursor-pointer" onclick="openProjectModal('gamestob')">
+                            GameStoB - Game Store Website 🔗
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Developed a multi-page game store website featuring promotions, latest releases, best sellers, and product filtering/sorting.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">HTML5</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">CSS3</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="px-7 py-4 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-xs font-bold">
+                        <button onclick="openProjectModal('gamestob')" class="text-[#4A7FA8] hover:underline flex items-center gap-1.5">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com/davinaoktaviani/gamestob-game-store" target="_blank" class="text-slate-500 hover:text-slate-900"><i class="fa-brands fa-github text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Song Recommender -->
+                <div class="project-card w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between" data-category="ml">
+<div class="asset-wrap aspect-[16/10]"><img class="asset" src="images/project-song-recommender.jpg" alt="Foto project: Song Recommender" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-2xl"></i><span>Foto project: Song Recommender<br><small>images/project-song-recommender.jpg</small></span></div></div>
+                    <div class="p-7 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3.5 py-1 rounded-lg bg-purple-100 text-purple-900 text-xs font-bold">NLP & Recommendation System</span>
+                            <span class="text-xs text-slate-400 font-medium">Jan 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 hover:text-[#4A7FA8] transition-colors cursor-pointer" onclick="openProjectModal('song-rec')">
+                            Content-Based Song Recommender 🔗
+                        </h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Developed a content-based recommendation system that recommends songs based on song metadata, audio features, and text similarity.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Python</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">TF-IDF</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 font-semibold">Cosine Similarity</span>
+                        </div>
+                    </div>
+                    <div class="px-7 py-4 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-xs font-bold">
+                        <button onclick="openProjectModal('song-rec')" class="text-[#4A7FA8] hover:underline flex items-center gap-1.5">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <a href="https://github.com/davinaoktaviani/content-based-song-recommender" target="_blank" class="text-slate-500 hover:text-slate-900"><i class="fa-brands fa-github text-lg"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="awards" class="py-20 px-6 lg:px-12 bg-palette-bg border-t border-slate-200/80">
+            <div class="max-w-7xl mx-auto space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#E0806F]">Honors & Certifications</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Awards & Licenses</h2>
+                    <div class="w-16 h-1 bg-palette-coral mx-auto rounded-full"></div>
+                </div>
+
+                <!-- National Competition Award Highlight Banner -->
+                <div class="relative rounded-3xl p-8 sm:p-10 bg-gradient-to-r from-amber-500/10 via-palette-cream/40 to-palette-teal/20 border-2 border-amber-400/60 shadow-lg overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 text-slate-900/5 text-9xl font-extrabold select-none pointer-events-none">#1</div>
+                    <div class="relative z-10 space-y-10"><div class="flex flex-col items-center gap-5 text-center">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 to-amber-500 text-white flex items-center justify-center text-3xl shadow-md shrink-0">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold">
+                                🏆 1st Winner — National Competition
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">1st Winner - DATAQUEST 5.0: Visual Quest</h3>
+                            <p class="text-sm sm:text-base text-slate-700 max-w-3xl leading-relaxed mx-auto">
+                                Achieved 1st Winner in Visual Quest, a national data science competition organized by the Himpunan Mahasiswa Teknologi Sains Data Universitas Airlangga (Sep 2026). The competition focused on data analysis and data visualization, challenging participants to communicate data-driven insights through informative and creative visualizations.
+                            </p>
+                        </div>
+</div>
+<div class="flex flex-wrap justify-center gap-6 sm:gap-10"><div class="asset-wrap zoomable w-full sm:w-72 lg:w-80 aspect-[3/4] rounded-3xl border-[6px] border-white shadow-2xl -rotate-2 hover:rotate-0 transition-transform duration-300" onclick="zoomImg(this)"><img class="asset" src="images/dataquest-1.jpg" alt="Foto DATAQUEST 1" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-3xl"></i><span>Foto DATAQUEST 1<br><small>images/dataquest-1.jpg</small></span></div><span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div><div class="asset-wrap zoomable w-full sm:w-72 lg:w-80 aspect-[3/4] rounded-3xl border-[6px] border-white shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-300" onclick="zoomImg(this)"><img class="asset" src="images/dataquest-2.jpg" alt="Foto DATAQUEST 2" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-3xl"></i><span>Foto DATAQUEST 2<br><small>images/dataquest-2.jpg</small></span></div><span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div></div></div></div>
+
+                <!-- Licenses & Certifications Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm flex flex-col gap-5 hover:border-palette-teal transition-all">
+<div class="flex items-center gap-5"><div class="logo-wrap w-16 h-16 rounded-2xl bg-white border border-slate-200 shrink-0 shadow-sm"><img class="asset" src="images/logo-nvidia.png" alt="Logo" onerror="assetMissing(this)"><i class="fb absolute inset-0 items-center justify-center text-xl text-[#4A7FA8] fa-solid fa-microchip"></i></div><div><span class="text-xs text-slate-400 font-semibold">Jul 2026</span><h4 class="font-bold text-slate-900 text-base sm:text-lg leading-snug">NVIDIA - Fundamentals of Deep Learning</h4><p class="text-xs sm:text-sm text-slate-500 font-medium">NVIDIA Deep Learning Institute</p></div></div>
+<div class="asset-wrap zoomable w-full aspect-[4/3] rounded-2xl border border-slate-200 shadow-md" onclick="zoomImg(this)"><img class="asset" src="images/sertifikat-nvidia.jpg" alt="Sertifikat NVIDIA" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-3xl"></i><span>Sertifikat NVIDIA<br><small>images/sertifikat-nvidia.jpg</small></span></div><span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div></div>
+<div class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm flex flex-col gap-5 hover:border-palette-coral transition-all">
+<div class="flex items-center gap-5"><div class="logo-wrap w-16 h-16 rounded-2xl bg-white border border-slate-200 shrink-0 shadow-sm"><img class="asset" src="images/logo-aws.png" alt="Logo" onerror="assetMissing(this)"><i class="fb absolute inset-0 items-center justify-center text-xl text-[#4A7FA8] fa-brands fa-aws"></i></div><div><span class="text-xs text-slate-400 font-semibold">May 2026</span><h4 class="font-bold text-slate-900 text-base sm:text-lg leading-snug">AWS Machine Learning Foundations</h4><p class="text-xs sm:text-sm text-slate-500 font-medium">Amazon Web Services Academy</p></div></div>
+<div class="asset-wrap zoomable w-full aspect-[4/3] rounded-2xl border border-slate-200 shadow-md" onclick="zoomImg(this)"><img class="asset" src="images/sertifikat-aws.jpg" alt="Sertifikat AWS" loading="lazy" onerror="assetMissing(this)"><div class="ph"><i class="fa-regular fa-image text-3xl"></i><span>Sertifikat AWS<br><small>images/sertifikat-aws.jpg</small></span></div><span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span></div></div>
+</div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 px-6 lg:px-12 bg-white border-t border-slate-200/80">
+            <div class="max-w-7xl mx-auto space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#4E9C8E]">Core Competencies</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Technical Skills</h2>
+                    <div class="w-16 h-1 bg-palette-teal mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-6 gap-6"><div class="md:col-span-3 lg:col-span-2 p-6 rounded-3xl bg-palette-bg border border-slate-200 shadow-sm space-y-4"><h3 class="font-bold text-slate-900 flex items-center gap-2.5 pb-3 border-b border-slate-200"><span class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#E0806F]"><i class="fa-solid fa-code"></i></span>Programming & Data</h3><div class="flex flex-wrap gap-2.5"><span class="skill-chip"><span class="tile" style="background:#3776AB">Py<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>Python</span><span class="skill-chip"><span class="tile" style="background:#276DC3">R<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>R</span><span class="skill-chip"><span class="tile" style="background:#150458">Pd<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>Pandas</span><span class="skill-chip"><span class="tile" style="background:#4D77CF">Np<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>NumPy</span><span class="skill-chip"><span class="tile" style="background:#E9A03B">tv</span>tidyverse</span></div></div><div class="md:col-span-3 lg:col-span-2 p-6 rounded-3xl bg-palette-bg border border-slate-200 shadow-sm space-y-4"><h3 class="font-bold text-slate-900 flex items-center gap-2.5 pb-3 border-b border-slate-200"><span class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#E0806F]"><i class="fa-solid fa-chart-line"></i></span>Analysis & Visualization</h3><div class="flex flex-wrap gap-2.5"><span class="skill-chip"><span class="tile" style="background:#11557C">Mp<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>Matplotlib</span><span class="skill-chip"><span class="tile" style="background:#4C72B0">Sb</span>Seaborn</span><span class="skill-chip"><span class="tile" style="background:#3F4F75">Pl<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/plotly/plotly-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>Plotly</span></div></div><div class="md:col-span-3 lg:col-span-2 p-6 rounded-3xl bg-palette-bg border border-slate-200 shadow-sm space-y-4"><h3 class="font-bold text-slate-900 flex items-center gap-2.5 pb-3 border-b border-slate-200"><span class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#4E9C8E]"><i class="fa-solid fa-gears"></i></span>Machine Learning & Deployment</h3><div class="flex flex-wrap gap-2.5"><span class="skill-chip"><span class="tile" style="background:#F7931E">Sk<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>Scikit-Learn</span><span class="skill-chip"><span class="tile" style="background:#189AB4">XG</span>XGBoost</span><span class="skill-chip"><span class="tile" style="background:#2E8B57">RF</span>Random Forest</span><span class="skill-chip"><span class="tile" style="background:#7C3AED">SVM</span>SVM</span><span class="skill-chip"><span class="tile" style="background:#0194E2">ML</span>MLflow</span><span class="skill-chip"><span class="tile" style="background:#FF4B4B">St<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>Streamlit</span><span class="skill-chip"><span class="tile" style="background:#009688">FA<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>FastAPI</span></div></div><div class="md:col-span-3 p-6 rounded-3xl bg-palette-bg border border-slate-200 shadow-sm space-y-4"><h3 class="font-bold text-slate-900 flex items-center gap-2.5 pb-3 border-b border-slate-200"><span class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#4A7FA8]"><i class="fa-solid fa-brain"></i></span>Deep Learning</h3><div class="flex flex-wrap gap-2.5"><span class="skill-chip"><span class="tile" style="background:#FF6F00">TF<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>TensorFlow</span><span class="skill-chip"><span class="tile" style="background:#D00000">Ke<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>Keras</span><span class="skill-chip"><span class="tile" style="background:#EE4C2C">Pt<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>PyTorch</span><span class="skill-chip"><span class="tile" style="background:#6366F1">CNN</span>CNN</span><span class="skill-chip"><span class="tile" style="background:#8B5CF6">LSTM</span>LSTM</span><span class="skill-chip"><span class="tile" style="background:#0EA5E9">AE</span>Autoencoders</span><span class="skill-chip"><span class="tile" style="background:#EC4899">GANs</span>GANs</span></div></div><div class="md:col-span-6 lg:col-span-3 p-6 rounded-3xl bg-palette-bg border border-slate-200 shadow-sm space-y-4"><h3 class="font-bold text-slate-900 flex items-center gap-2.5 pb-3 border-b border-slate-200"><span class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-purple-500"><i class="fa-solid fa-cloud"></i></span>Cloud, Web & Soft Skills</h3><div class="flex flex-wrap gap-2.5"><span class="skill-chip"><span class="tile" style="background:#FF9900">AWS</span>AWS</span><span class="skill-chip"><span class="tile" style="background:#569A31">S3</span>AWS S3</span><span class="skill-chip"><span class="tile" style="background:#01A88D">SM</span>SageMaker</span><span class="skill-chip"><span class="tile" style="background:#F58536">EC</span>EC2</span><span class="skill-chip"><span class="tile" style="background:#3B82F6">B3</span>Boto3</span><span class="skill-chip"><span class="tile" style="background:#E34F26">H5<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>HTML</span><span class="skill-chip"><span class="tile" style="background:#1572B6">C3<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>CSS</span><span class="skill-chip"><span class="tile" style="background:#F7B500">JS<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" loading="lazy" onerror="this.remove()"></span>JavaScript</span><span class="skill-chip skill-soft"><span class="tile" style="background:#F8A499"><i class="fa-solid fa-crown"></i></span>Leadership</span><span class="skill-chip skill-soft"><span class="tile" style="background:#F8A499"><i class="fa-solid fa-comments"></i></span>Communication</span><span class="skill-chip skill-soft"><span class="tile" style="background:#F8A499"><i class="fa-solid fa-people-group"></i></span>Teamwork</span><span class="skill-chip skill-soft"><span class="tile" style="background:#F8A499"><i class="fa-solid fa-handshake"></i></span>Collaboration</span></div></div></div>
+</div>
+</section>
+
+        <section id="cv" class="py-20 px-6 lg:px-12 bg-white border-t border-slate-200/80">
+<div class="cv-card max-w-5xl mx-auto rounded-[2rem] overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-palette-blue/80 text-white p-8 sm:p-12 grid md:grid-cols-5 gap-10 items-center shadow-2xl">
+<div class="md:col-span-3 space-y-5">
+<h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">Want the full picture?<br>Read my CV.</h2>
+<p class="text-slate-300 text-sm sm:text-base max-w-md">Education, experience, projects, awards, and skills in one page. Preview it here or save a copy.</p>
+<div class="flex flex-wrap gap-3 pt-2">
+<button onclick="openCV()" class="px-7 py-3.5 rounded-2xl bg-white text-slate-900 text-sm font-bold hover:bg-palette-cream transition-all flex items-center gap-2.5"><i class="fa-solid fa-eye"></i>View CV</button>
+<button onclick="downloadCV()" class="px-7 py-3.5 rounded-2xl bg-palette-coral text-slate-900 text-sm font-bold hover:brightness-105 transition-all flex items-center gap-2.5"><i class="fa-solid fa-download"></i>Download CV</button>
+</div></div>
+<div class="md:col-span-2 flex justify-center"><div class="paper w-44 sm:w-52 p-5 space-y-2.5 text-slate-800">
+<div class="font-extrabold text-sm leading-tight">DAVINA OKTAVIANI</div><div class="h-1 w-full bg-palette-coral rounded"></div>
+<div class="h-1.5 w-full bg-slate-200 rounded"></div><div class="h-1.5 w-4/5 bg-slate-200 rounded"></div><div class="h-1.5 w-11/12 bg-slate-200 rounded"></div>
+<div class="h-1 w-full bg-palette-teal rounded mt-3"></div><div class="h-1.5 w-full bg-slate-200 rounded"></div><div class="h-1.5 w-3/5 bg-slate-200 rounded"></div>
+<div class="h-1 w-full bg-palette-blue rounded mt-3"></div><div class="h-1.5 w-5/6 bg-slate-200 rounded"></div><div class="h-1.5 w-full bg-slate-200 rounded"></div><div class="h-1.5 w-2/3 bg-slate-200 rounded"></div>
+</div></div></div>
+</section>
+
+<section id="contact" class="py-20 px-6 lg:px-12 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#E0806F]">Get In Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Contact Information</h2>
+                <div class="w-16 h-1 bg-palette-coral mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Direct Contact Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Direct Email Card -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-card-hover transition-all space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-palette-coral/20 text-[#E0806F] flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Email Address</h3>
+<p class="text-xs text-slate-500 font-medium">Have a question or want to get in touch? Feel free to send me an email.</p>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=davinaoktaviani1810@gmail.com" class="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-2xl bg-palette-coral text-slate-900 font-bold text-xs sm:text-sm hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+                            <span>davinaoktaviani1810@gmail.com</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Direct Phone / WhatsApp Card -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-card-hover transition-all space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-palette-teal/20 text-[#4E9C8E] flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Phone / WhatsApp</h3>
+<p class="text-xs text-slate-500 font-medium">Prefer a quick conversation? Reach me directly via WhatsApp.</p>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://wa.me/6281389978082" target="_blank" class="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-2xl bg-palette-teal text-slate-900 font-bold text-xs sm:text-sm hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+                            <span>+62 813-8997-8082</span>
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Location & Socials Card -->
+                <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-card-hover transition-all space-y-4 flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-palette-blue/20 text-[#4A7FA8] flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Location & Socials</h3>
+                        <p class="text-xs text-slate-500 font-medium">Jakarta Barat, DKI Jakarta, Indonesia.</p>
+                    </div>
+                    <div class="flex gap-3 pt-2">
+                        <a href="https://www.linkedin.com/in/davina-oktaviani-664419326/" target="_blank" class="flex-1 py-3 px-4 rounded-2xl bg-slate-100 text-slate-800 text-xs font-bold hover:bg-palette-blue hover:text-white transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/davinaoktaviani" target="_blank" class="flex-1 py-3 px-4 rounded-2xl bg-slate-100 text-slate-800 text-xs font-bold hover:bg-slate-900 hover:text-white transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lb" class="hidden fixed inset-0 z-[80] items-center justify-center bg-slate-900/85 backdrop-blur-sm p-4 cursor-zoom-out" onclick="this.classList.add('hidden');this.classList.remove('flex')"><img alt="" class="max-h-full max-w-full rounded-2xl shadow-2xl"></div>
+<div id="cv-modal" class="hidden fixed inset-0 z-[60] items-center justify-center bg-slate-900/70 backdrop-blur-sm p-3 sm:p-8" onclick="if(event.target===this)closeCV()">
+<div class="bg-white rounded-3xl w-full max-w-4xl h-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between gap-3 px-5 py-3.5 border-b border-slate-200">
+<div class="font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-file-lines text-[#E0806F]"></i>Curriculum Vitae</div>
+<div class="flex items-center gap-2">
+<button onclick="downloadCV()" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-palette-blue flex items-center gap-2"><i class="fa-solid fa-download"></i>Download</button>
+<button onclick="closeCV()" aria-label="Close" class="w-9 h-9 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100"><i class="fa-solid fa-xmark"></i></button>
+</div></div>
+<iframe id="cv-frame" class="hidden flex-1 w-full bg-slate-100" title="CV Davina Oktaviani" allow="autoplay"></iframe>
+<div id="cv-note" class="hidden flex-1 p-8 text-center flex-col items-center justify-center text-slate-600 text-sm space-y-2"><i class="fa-brands fa-google-drive text-4xl text-[#4A7FA8]"></i><p class="font-bold text-slate-900">CV belum tersambung</p><p>Buka file HTML ini, cari <code class="bg-slate-100 px-1.5 rounded">CV_FILE_ID</code>, lalu isi dengan ID file Google Drive.</p></div>
+</div></div>
+
+<footer class="bg-slate-900 text-slate-400 text-xs sm:text-sm py-12 px-6 lg:px-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p>© 2026 Davina Oktaviani. All rights reserved.</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#hero" class="hover:text-[#E0806F] transition-colors font-semibold">Back to Top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-10 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 text-2xl focus:outline-none" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Content injected dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Exact project breakdown matching the provided CV
+        const projectsData = {
+            'credit-score': {
+                title: 'Credit Score Prediction',
+                badge: 'Machine Learning & AWS',
+                period: 'Jun 2026 – Jul 2026',
+                description: 'Developed an end-to-end machine learning classification project to predict customers\' credit scores into Poor, Standard, and Good categories.',
+                highlights: [
+                    'Performed data preprocessing and feature transformation, then trained and compared Logistic Regression, Decision Tree, and Random Forest models.',
+                    'Evaluated model performance using Accuracy, Precision, Recall, and F1-Score, with MLflow for experiment tracking and model management.',
+                    'Packaged and deployed the model through a Streamlit application for local prediction and AWS S3, SageMaker, EC2, and Boto3 for cloud-based inference.'
+                ],
+                tech: ['Python', 'Random Forest', 'Decision Tree', 'MLflow', 'Streamlit', 'AWS SageMaker', 'AWS EC2', 'AWS S3', 'Boto3']
+            },
+            'student-placement': {
+                title: 'Student Placement & Salary Prediction',
+                badge: 'Classification & Regression',
+                period: 'Apr 2026',
+                description: 'Developed a machine learning project combining classification and regression to predict student placement status and estimated salary.',
+                highlights: [
+                    'Preprocessed data and developed classification and regression models using Logistic Regression, SVM, Random Forest, Linear Regression, and Decision Tree.',
+                    'Evaluated model performance using appropriate classification and regression metrics, with MLflow for experiment tracking and model comparison.',
+                    'Developed deployment interfaces using Streamlit and FastAPI for model-based predictions.'
+                ],
+                tech: ['Python', 'SVM', 'Random Forest', 'Linear Regression', 'Logistic Regression', 'FastAPI', 'Streamlit', 'MLflow']
+            },
+            'stock-lstm': {
+                title: 'Stock Price Prediction using LSTM',
+                badge: 'Deep Learning Time-Series',
+                period: 'Jun 2026',
+                description: 'Developed a deep learning time-series forecasting project using Long Short-Term Memory (LSTM) networks to predict stock prices based on historical data from Facebook and IBM.',
+                highlights: [
+                    'Prepared time-series data using a sliding-window approach and developed a baseline LSTM model for stock price prediction.',
+                    'Improved the model architecture using a multi-layer LSTM with Dropout.',
+                    'Evaluated and compared model performance across different stock datasets using RMSE, MAE, and MAPE.'
+                ],
+                tech: ['Python', 'TensorFlow / PyTorch', 'LSTM', 'Dropout', 'Sliding Window', 'RMSE / MAE / MAPE']
+            },
+            'gamestob': {
+                title: 'GameStoB - Game Store Website',
+                badge: 'Front-End Web Development',
+                period: 'Feb 2026 – Jun 2026',
+                description: 'Developed a multi-page game store website as a front-end web development project.',
+                highlights: [
+                    'Designed and developed a multi-page game store website featuring promotions, latest releases, best sellers, and a product catalog.',
+                    'Implemented product filtering, sorting, responsive navigation, and simulated purchase and payment flows.',
+                    'Built interactive web interfaces using HTML, CSS, and JavaScript.'
+                ],
+                tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Web Design']
+            },
+            'song-rec': {
+                title: 'Content-Based Song Recommender',
+                badge: 'NLP & Recommendation System',
+                period: 'Jan 2026',
+                description: 'Developed a content-based recommendation system that recommends songs based on metadata and text-based similarity.',
+                highlights: [
+                    'Cleaned and analyzed song metadata and audio features through exploratory data analysis.',
+                    'Applied TF-IDF and cosine similarity to identify songs with similar characteristics based on titles, artists, and genres.',
+                    'Developed a recommendation function that returns the five most similar songs based on user input.'
+                ],
+                tech: ['Python', 'TF-IDF', 'Cosine Similarity', 'Pandas', 'EDA']
+            }
+        };
+
+        // Modal Handlers
+        function openProjectModal(key) {
+            const data = projectsData[key];
+            if (!data) return;
+
+            const contentHtml = `
+                <div class="space-y-5">
+                    <div class="flex items-center justify-between pr-6 flex-wrap gap-2">
+                        <span class="px-3.5 py-1 rounded-full gradient-badge-coral text-slate-800 text-xs font-bold">${data.badge}</span>
+                        <span class="text-xs text-slate-400 font-semibold">${data.period}</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">${data.title}</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">${data.description}</p>
+
+                    <div class="space-y-3 pt-2">
+                        <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Key Project Contributions & Highlights:</h4>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc pl-5 leading-relaxed">
+                            ${data.highlights.map(h => `<li>${h}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="space-y-2.5 pt-3">
+                        <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Technologies Used:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${data.tech.map(t => `<span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-semibold">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modal-content').innerHTML = contentHtml;
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close modal on click backdrop
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        // Filter Functionality for Projects
+        const filterBtns = document.querySelectorAll('.project-filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active-tab');
+                    b.classList.add('bg-white');
+                });
+                btn.classList.add('active-tab');
+                btn.classList.remove('bg-white');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+    </script>
+<script>
+function zoomImg(w){const i=w.querySelector('img');if(!i||w.classList.contains('no-img'))return;const l=document.getElementById('lb');l.querySelector('img').src=i.src;l.classList.remove('hidden');l.classList.add('flex');}
+(()=>{const q=s=>document.querySelectorAll(s);
+q('section .rounded-3xl.shadow-sm,.project-card').forEach(e=>e.classList.add('lift'));
+const els=q('section h2,section .rounded-3xl,.project-card,.skill-chip');
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1});
+els.forEach(e=>{e.classList.add('reveal');io.observe(e)});
+const pg=document.getElementById('prog');const u=()=>{const d=document.documentElement;pg.style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight||1)*100)+'%'};addEventListener('scroll',u,{passive:true});u();
+})();
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const l=document.getElementById('lb');l.classList.add('hidden');l.classList.remove('flex')}});
+</script>
+</body>
+</html>
